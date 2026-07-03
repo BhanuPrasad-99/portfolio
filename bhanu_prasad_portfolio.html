@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bhanu Prasad — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0D10;
+    --surface: #15151A;
+    --surface2: #1C1C23;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #F0EFF5;
+    --muted: #8A8997;
+    --accent: #7F77DD;
+    --accent-dim: rgba(127,119,221,0.15);
+    --accent-glow: rgba(127,119,221,0.25);
+    --teal: #1D9E75;
+    --teal-dim: rgba(29,158,117,0.12);
+    --amber: #EF9F27;
+    --amber-dim: rgba(239,159,39,0.12);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2rem;
+    background: rgba(13,13,16,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px; font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 0 4rem;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    font-weight: 600; line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  h1 span { color: var(--accent); }
+  .hero-desc {
+    font-size: 16px; color: var(--muted);
+    max-width: 520px; line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .hero-links {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px;
+    font-size: 13px; font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: all 0.18s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #9490e8; border-color: #9490e8; }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+    border: 0.5px solid var(--border2);
+  }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.25); background: var(--surface); }
+  .btn svg { width: 14px; height: 14px; }
+
+  /* METRICS */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 3.5rem 0;
+  }
+  .metric {
+    background: var(--surface);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+  .metric-val {
+    font-size: 28px; font-weight: 600;
+    color: var(--text); letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .metric-val span { color: var(--accent); font-size: 18px; }
+  .metric-lbl {
+    font-size: 12px; color: var(--muted);
+    margin-top: 6px; text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTIONS */
+  section { padding: 3rem 0; border-top: 0.5px solid var(--border); }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.75rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px; color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px; border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  h2 { font-size: 18px; font-weight: 500; }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 0 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 3px; }
+  .exp-title { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+  .exp-co { font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+  .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: border-color 0.2s, background 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+  .project-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 10px;
+  }
+  .project-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .project-badge {
+    font-family: var(--mono);
+    font-size: 10px; padding: 2px 7px;
+    border-radius: 4px; letter-spacing: 0.04em;
+    align-self: flex-start;
+  }
+  .badge-hackathon { background: var(--accent-dim); color: var(--accent); }
+  .badge-ml { background: var(--teal-dim); color: var(--teal); }
+  .badge-auto { background: var(--amber-dim); color: var(--amber); }
+  .project-name { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .project-desc { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+  .tag {
+    font-size: 11px; padding: 2px 8px;
+    background: var(--surface2); color: var(--muted);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+  }
+
+  /* SKILLS */
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .skill-group { }
+  .skill-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin-bottom: 10px;
+    font-family: var(--mono);
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-pill {
+    font-size: 12px; padding: 4px 11px;
+    background: var(--surface); color: var(--text);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+    transition: border-color 0.15s;
+  }
+  .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* CERTS */
+  .cert-list { display: flex; flex-direction: column; gap: 0; }
+  .cert-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 0.9rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .cert-name { font-size: 14px; font-weight: 500; }
+  .cert-issuer { font-size: 12px; color: var(--muted); margin-left: auto; font-family: var(--mono); }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+  .footer-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy { font-size: 12px; color: var(--muted); opacity: 0.6; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0.8rem 1rem; }
+    .nav-links { gap: 1rem; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-date { margin-bottom: 4px; }
+    .skills-layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">bhanu.dev</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certs">Certs</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1>Bhanu <span>Prasad</span></h1>
+    <p class="hero-desc">
+      AI/ML Engineer & Data Analyst building intelligent systems, automation pipelines, and hackathon-grade solutions.
+      B.Tech CSE · Vignan Institute · Hyderabad · CGPA 8.2 · 2027
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://github.com/BhanuPrasad-99" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/bbhanuprasad" target="_blank">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://www.fiverr.com/bhanu_leo_9" target="_blank">Fiverr</a>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">8.2</div>
+      <div class="metric-lbl">CGPA</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">2</div>
+      <div class="metric-lbl">Internships</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">8<span>+</span></div>
+      <div class="metric-lbl">Hackathons</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">5<span>+</span></div>
+      <div class="metric-lbl">Certifications</div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">Jan – Mar 2026</div>
+        <div>
+          <div class="exp-title">Data Analytics Intern</div>
+          <div class="exp-co">Codec Technologies</div>
+          <div class="exp-desc">Delivered data-driven insights through analytics pipelines, dashboards, and statistical reporting.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Aug – Oct 2024</div>
+        <div>
+          <div class="exp-title">AI / LLM Research Intern</div>
+          <div class="exp-co">IIIT Hyderabad</div>
+          <div class="exp-desc">Researched large language model fine-tuning and evaluation methodologies in a top-tier research environment.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(127,119,221,0.12)">🤝</div>
+          <span class="project-badge badge-hackathon">Hackathon</span>
+        </div>
+        <div class="project-name">MeetingMind Pro</div>
+        <div class="project-desc">AI meeting analysis platform built for Microsoft Build AI Hackathon 2026. Flask + Groq + SQLite with intelligent summarization and action-item extraction.</div>
+        <div class="project-tags">
+          <span class="tag">Flask</span><span class="tag">Groq API</span><span class="tag">SQLite</span><span class="tag">LLM</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(29,158,117,0.12)">🛣️</div>
+          <span class="project-badge badge-hackathon">Hackathon</span>
+        </div>
+        <div class="project-name">SafeRoad AI</div>
+        <div class="project-desc">Real-time road safety system for National Road Safety Hackathon at IIT Madras. YOLOv9 + MediaPipe + reinforcement learning for adaptive driver alerts.</div>
+        <div class="project-tags">
+          <span class="tag">YOLOv9</span><span class="tag">MediaPipe</span><span class="tag">RL</span><span class="tag">CV</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(127,119,221,0.12)">🎙️</div>
+          <span class="project-badge badge-hackathon">Hackathon</span>
+        </div>
+        <div class="project-name">VoiceNav</div>
+        <div class="project-desc">Voice-first accessibility app for HackArena 2.0 (with Hari). On-device Mozilla.ai tools for fully offline, privacy-preserving voice navigation.</div>
+        <div class="project-tags">
+          <span class="tag">Mozilla.ai</span><span class="tag">On-device AI</span><span class="tag">Accessibility</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(239,159,39,0.12)">🏭</div>
+          <span class="project-badge badge-ml">ML</span>
+        </div>
+        <div class="project-name">Steel Defect Detection</div>
+        <div class="project-desc">Tata Steel AI Hackathon. Tabular ensemble (XGBoost + LightGBM + CatBoost) with SMOTE oversampling and threshold tuning. Log-loss optimized.</div>
+        <div class="project-tags">
+          <span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">CatBoost</span><span class="tag">SMOTE</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(29,158,117,0.12)">👤</div>
+          <span class="project-badge badge-ml">ML</span>
+        </div>
+        <div class="project-name">Candidate Ranking System</div>
+        <div class="project-desc">Multi-signal scoring pipeline processing 100K+ AI engineer profiles for the Redrob challenge. Automated ranking with Pandas and feature engineering.</div>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">ML Scoring</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(239,159,39,0.12)">🎬</div>
+          <span class="project-badge badge-auto">Automation</span>
+        </div>
+        <div class="project-name">Football Shorts Pipeline</div>
+        <div class="project-desc">Fully automated YouTube Shorts system. OpenCV motion scoring to clip highlights + Gemini Vision for titles + YouTube Data API v3 for scheduled uploads.</div>
+        <div class="project-tags">
+          <span class="tag">OpenCV</span><span class="tag">Gemini Vision</span><span class="tag">YouTube API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(29,158,117,0.12)">🛒</div>
+          <span class="project-badge badge-ml">ML</span>
+        </div>
+        <div class="project-name">ReturnIQ</div>
+        <div class="project-desc">ML-powered e-commerce return prediction system. Reduces return rates through classification models and advanced feature engineering on order data.</div>
+        <div class="project-tags">
+          <span class="tag">Scikit-learn</span><span class="tag">Feature Engineering</span><span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon" style="background:rgba(212,83,126,0.12)">❤️</div>
+          <span class="project-badge badge-ml">ML</span>
+        </div>
+        <div class="project-name">Heart Disease Risk Predictor</div>
+        <div class="project-desc">Clinical risk stratification model with BERT-enhanced NLP features for patient-level heart disease prediction in healthcare settings.</div>
+        <div class="project-tags">
+          <span class="tag">BERT</span><span class="tag">NLP</span><span class="tag">Healthcare AI</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-group">
+        <div class="skill-label">Languages & Frameworks</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">React</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">ML / AI</div>
+        <div class="skill-pills">
+          <span class="skill-pill">XGBoost</span>
+          <span class="skill-pill">LightGBM</span>
+          <span class="skill-pill">BERT</span>
+          <span class="skill-pill">YOLOv9</span>
+          <span class="skill-pill">OpenCV</span>
+          <span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">Gemini API</span>
+          <span class="skill-pill">Groq</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:1.25rem;">
+        <div class="skill-label">Automation & Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">n8n</span>
+          <span class="skill-pill">Selenium</span>
+          <span class="skill-pill">GitHub</span>
+          <span class="skill-pill">SQLite</span>
+          <span class="skill-pill">MoviePy</span>
+          <span class="skill-pill">YouTube API</span>
+        </div>
+      </div>
+      <div class="skill-group" style="margin-top:1.25rem;">
+        <div class="skill-label">Data & Analytics</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Matplotlib</span>
+          <span class="skill-pill">SMOTE</span>
+          <span class="skill-pill">Feature Engineering</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Certifications</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div class="cert-name">Anthropic Claude 101</div>
+        <div class="cert-issuer">Anthropic</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div class="cert-name">Anthropic Claude Code 101</div>
+        <div class="cert-issuer">Anthropic</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot" style="background:var(--teal)"></div>
+        <div class="cert-name">Additional Certifications (5+)</div>
+        <div class="cert-issuer">Various Platforms</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://github.com/BhanuPrasad-99" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/bbhanuprasad" target="_blank">LinkedIn</a>
+      <a href="https://www.fiverr.com/bhanu_leo_9" target="_blank">Fiverr</a>
+    </div>
+    <div class="footer-copy">Bhanu Prasad · Hyderabad · 2025</div>
+  </div>
+</footer>
+
+</body>
+</html>
